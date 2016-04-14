@@ -31,5 +31,15 @@ RELEASE NOTES
     2) views for: list of all users, viewing, adding, editing and deleting a single user
     3) bizzfuzz and 'children' templatags
     4) csv reports
+    5) no unit testing
 
 
+OTHER
+-----
+
+screenshoots:
+    user info: http://i.share.pho.to/31d6c76e_o.png
+    user change: http://i.share.pho.to/591e35c8_o.png
+    user list: http://i.share.pho.to/141fefd7_o.png
+
+csv report: https://dropmefiles.com/NGTtn
