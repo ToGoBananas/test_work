@@ -40,4 +40,11 @@ urlpatterns = [
         view=views.UserCreateView.as_view(),
         name='create'
     ),
+
+    # URL pattern for the CreateReportView
+    url(
+        regex=r'^~create_report/$',
+        view=views.CreateReportView.as_view(),
+        name='report'
+    ),
 ]

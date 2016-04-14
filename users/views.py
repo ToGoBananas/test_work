@@ -2,11 +2,15 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, RedirectView, UpdateView
+from django.views.generic import CreateView, DetailView, View, ListView, RedirectView, UpdateView
 from django.shortcuts import get_object_or_404
 from .forms import MyUserCreationForm, MyUserChangeForm
+from django.http import HttpResponse
 
 from .models import User
+from .templatetags.user_extras import bizz_fuzz, child_protect
+
+import csv
 
 
 class UserDetailView(DetailView):
@@ -52,3 +56,14 @@ class UserDeleteView(RedirectView):
 class UserCreateView(CreateView):
     form_class = MyUserCreationForm
     template_name = 'users/create.html'
+
+
+class CreateReportView(View):
+
+    def get(self, request, *args, **kwargs):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="report.csv"'
+        writer = csv.writer(response)
+        for user in User.objects.all():
+            writer.writerow([user.username, user.birthday_date, child_protect(user), user.random_int, bizz_fuzz(user)])
+        return response
