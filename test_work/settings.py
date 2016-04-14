@@ -39,11 +39,16 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
+THIRD_PARTY_APPS = [
+    'crispy_forms',  # Form layouts
+]
+
+
 LOCAL_APPS = [
     'users'
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 
 MIDDLEWARE_CLASSES = [
@@ -62,7 +67,7 @@ ROOT_URLCONF = 'test_work.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

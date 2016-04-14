@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ object.username }}</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        {% for name, value in object.get_fields %}
+            <div class="col-sm-12 ">
+                {% if value %}
+                    {{ name }} => {{ value }}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a type="button" class="btn btn-success" href="{% url 'users:change' object.username %}">Change this user</a>
+            <a type="button" class="btn btn-danger" href="{% url 'users:delete' object.username %}">Delete this user</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
