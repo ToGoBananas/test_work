@@ -6,8 +6,11 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+from django.utils.functional import cached_property
 
 from .utils import get_random_value
+
+import datetime
 
 
 @python_2_unicode_compatible
@@ -24,3 +27,10 @@ class User(AbstractUser):
 
     def get_fields(self):
         return [(field.name, field.value_to_string(self)) for field in self._meta.fields]
+
+    @cached_property
+    def age(self):
+        if self.birthday_date:
+            return int((datetime.datetime.now().date()-self.birthday_date).days/365)
+        else:
+            return None
